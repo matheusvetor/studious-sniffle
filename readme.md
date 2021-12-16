@@ -1,4 +1,4 @@
-Write reliable and best practice code in ruby to calculate the check digit of given ISBN13 barcode (string) and put it into a GIT repo for us to look at.
+# Write reliable and best practice code in ruby to calculate the check digit of given ISBN13 barcode (string) and put it into a GIT repo for us to look at.
 
 The algorithm is:
 
@@ -9,9 +9,24 @@ The algorithm is:
 
 Example for 978014300723:
 
-`=> (9×1) + (7×3) + (8×1) + (0×3) + (1×1) + (4×3) + (3×1) + (0×3) + (0×1) + (7×3) + (2×1) + (3×3)`
-`=> 86`
-`=> 86 mod 10 = 6`
-`=> 10 - 6 = 4`
+```
+=> (9×1) + (7×3) + (8×1) + (0×3) + (1×1) + (4×3) + (3×1) + (0×3) + (0×1) + (7×3) + (2×1) + (3×3)
+=> 86
+=> 86 mod 10 = 6
+=> 10 - 6 = 4
+```
 
 Therefore the complete ISBN is: 9780143007234
+
+
+# Code usage
+
+Simply import this lib on your project or `irb`:
+```
+require 'lib/barcode_checker'
+```
+
+Usage:
+```
+BarcodeChecker.valid?('9780143007234')
+```
