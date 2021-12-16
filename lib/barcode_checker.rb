@@ -1,6 +1,7 @@
 class BarcodeChecker
   def self.valid?(barcode)
     @barcode = barcode
+    return false unless @barcode.is_a?(String)
     return false unless @barcode.length.eql?(13)
 
     array_numbers.last.eql?(result)
