@@ -1,19 +1,30 @@
 class BarcodeChecker
-  def self.validate(barcode)
-    return false unless barcode.length.eql?(13) 
-    numbers = barcode.split('').map(&:to_i)
+  def self.valid?(barcode)
+    @barcode = barcode
+    return false unless @barcode.length.eql?(13)
 
-    result = numbers.first(12).map.with_index do |number, index|
+    array_numbers.last.eql?(result)
+  end
+
+  private
+
+  def self.array_numbers
+    @barcode.split('').map(&:to_i)
+  end
+
+  def self.sum_numbers
+    array_numbers.first(12).map.with_index do |number, index|
       factor = 1 
       factor = 3 if index.odd?
 
       number * factor
     end.reduce(:+)
-    result = result % 10
-    result = 10 - result
+  end
 
-    result = 0 if result.eql?(10)
+  def self.result
+    temp = 10 - (sum_numbers % 10)
 
-    numbers.last.eql?(result)
+    temp = 0 if temp.eql?(10)
+    temp
   end
 end
