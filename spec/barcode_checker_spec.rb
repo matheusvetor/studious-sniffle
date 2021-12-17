@@ -1,14 +1,11 @@
 require 'barcode_checker'
 
 RSpec.describe BarcodeChecker do
-  describe '#validate' do
-    it { expect(described_class.respond_to?(:valid?)).to be_truthy }
-    it { expect(described_class.valid?('978014300723')).to be_falsey }
-    it { expect(described_class.valid?('97801430072341')).to be_falsey }
-    it { expect(described_class.valid?(9780143007234)).to be_falsey }
-    it { expect(described_class.valid?('9780143007234')).to be_truthy }
-    it { expect(described_class.valid?('9780143007233')).to be_falsey }
-    it { expect(described_class.valid?('9781234567897')).to be_truthy }
-    it { expect(described_class.valid?('9781234567895')).to be_falsey }
+  describe '#calculate_check_digit' do
+    it { expect(described_class.respond_to?(:calculate_check_digit)).to be_truthy }
+    it { expect { described_class.calculate_check_digit('9780143007234') }.to raise_error('The string lengh needs to be 12 digts') }
+    it { expect { described_class.calculate_check_digit(9780143007234) }.to raise_error('The passing param needs to be a string') }
+    it { expect(described_class.calculate_check_digit('978014300723')).to eq(4) }
+    it { expect(described_class.calculate_check_digit('978123456789')).to eq(7) }
   end
 end

@@ -28,5 +28,7 @@ require 'lib/barcode_checker'
 
 Usage:
 ```
-BarcodeChecker.valid?('9780143007234')
+BarcodeChecker.calculate_check_digit('978014300723') #=> 4
+BarcodeChecker.calculate_check_digit('9780143007234') #=> raise 'The string lengh needs to be 12 digts'
+BarcodeChecker.calculate_check_digit(978014300723) #=> raise 'The passing param needs to be a string'
 ```

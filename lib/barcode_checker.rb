@@ -1,10 +1,10 @@
 class BarcodeChecker
-  def self.valid?(barcode)
+  def self.calculate_check_digit(barcode)
     @barcode = barcode
-    return false unless @barcode.is_a?(String)
-    return false unless @barcode.length.eql?(13)
+    raise StandardError.new('The passing param needs to be a string') unless @barcode.is_a?(String)
+    raise StandardError.new('The string lengh needs to be 12 digts') unless @barcode.length.eql?(12)
 
-    array_numbers.last.eql?(result)
+    result
   end
 
   private
